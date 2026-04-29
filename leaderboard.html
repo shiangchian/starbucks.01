@@ -63,10 +63,21 @@
         .social-links a:hover { color: white; transform: translateY(-3px); }
         
         @media (max-width: 768px) {
-            .rank-card { flex-direction: column; text-align: center; }
-            .rank-number { margin-right: 0; margin-bottom: 15px; }
-            .rank-img-container { margin-right: 0; margin-bottom: 20px; }
-            .rank-actions { justify-content: center; margin-top: 20px; }
+            .navbar { padding: 10px 15px; }
+            .brand-logo { font-size: 1.2rem; }
+            .brand-logo img { width: 30px; margin-right: 10px; }
+            .leaderboard-header h1 { font-size: 2rem; }
+            .leaderboard-container { padding: 20px 10px; border: none; background: transparent; }
+            .rank-card { flex-direction: column; text-align: center; padding: 20px; border-left: none; border-top: 5px solid #333; }
+            .rank-number { margin-right: 0; margin-bottom: 10px; font-size: 2rem; }
+            .rank-img-container { margin-right: 0; margin-bottom: 20px; width: 100px; height: 100px; }
+            .rank-actions { justify-content: center; margin-top: 20px; width: 100%; }
+            .btn-rank { flex: 1; }
+            .rank-1 { border-top-color: var(--gold); }
+            .rank-2 { border-top-color: var(--silver); }
+            .rank-3 { border-top-color: var(--bronze); }
+            .footer { padding: 3rem 1.5rem; gap: 2rem; text-align: center; }
+            .social-links { justify-content: center; }
         }
     </style>
 </head>
@@ -77,10 +88,19 @@
             <a class="navbar-brand brand-logo fs-3" href="index.html">
                 <img src="./image/loge01.png" alt="Logo"> NIKE TECH
             </a>
-            <div class="d-flex align-items-center gap-3">
-                <span id="user-display" class="badge bg-white text-dark px-3 py-2" style="display:none; font-size: 0.9rem;"></span>
-                <a id="btn-login" class="btn btn-outline-light rounded-0 px-4" href="login.html">登入</a>
-                <button id="btn-logout" class="btn btn-outline-danger rounded-0 px-4" style="display:none;">登出</button>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto ms-lg-4">
+                    <li class="nav-item"><a class="nav-link text-white fw-bold" href="index.html"><i class="fa-solid fa-house"></i> 首頁</a></li>
+                    <li class="nav-item"><a class="nav-link text-white fw-bold" href="cart.html"><i class="fa-solid fa-cart-shopping"></i> 購物車</a></li>
+                </ul>
+                <div class="d-flex align-items-center gap-2 mt-3 mt-lg-0">
+                    <span id="user-display" class="badge bg-white text-dark px-3 py-2" style="display:none; font-size: 0.85rem;"></span>
+                    <a id="btn-login" class="btn btn-outline-light rounded-0 px-3 py-2" href="login.html">登入</a>
+                    <button id="btn-logout" class="btn btn-outline-danger rounded-0 px-3 py-2" style="display:none;">登出</button>
+                </div>
             </div>
         </div>
     </nav>

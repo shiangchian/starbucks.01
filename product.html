@@ -60,9 +60,25 @@
         .btn-add-cart:hover { background: #ddd; transform: translateY(-3px); }
 
         @media (max-width: 900px) {
+            .navbar { padding: 15px 20px; }
+            .navbar-menu { 
+                display: none; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; 
+                background: rgba(10, 10, 10, 0.98); backdrop-filter: blur(15px); padding: 20px; width: 100%;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+            }
+            .navbar-menu.active { display: flex; }
+            .navbar-menu li { width: 100%; text-align: center; }
+            .navbar-menu a { display: block; padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+            .navbar-toggle { display: block; background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer; }
+            
+            .product-page-wrapper { padding: 2rem 1rem; }
             .product-detail-container { flex-direction: column; }
-            .image-section { padding: 3rem 2rem; } .image-section img { max-width: 250px; }
-            .info-section { padding: 3rem 2rem; } .pd-title { font-size: 2rem; }
+            .image-section { padding: 3rem 2rem; } .image-section img { max-width: 80%; }
+            .info-section { padding: 3rem 2rem; } 
+            .pd-title { font-size: 2rem; }
+            .breadcrumb { position: relative; top: 0; left: 0; margin-bottom: 20px; }
+            .footer { padding: 3rem 1.5rem; grid-template-columns: 1fr; text-align: center; gap: 3rem; }
+            .social-links { justify-content: center; }
         }
 
         .footer { background: #050505; padding: 6rem 40px; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 4rem; border-top: 1px solid rgba(255, 255, 255, 0.1); }
@@ -85,6 +101,7 @@
                 <img src="./image/loge01.png" alt="Nike Tech" class="logo">
                 <span>NIKE TECH</span>
             </a>
+            <button class="navbar-toggle" id="navbarToggle">☰</button>
             <ul class="navbar-menu" id="navbarMenu">
                 <li><a href="index.html#casual"><i class="fa-solid fa-shoe-prints"></i> 休閒鞋</a></li>
                 <li><a href="index.html#sport"><i class="fa-solid fa-bolt"></i> 運動鞋</a></li>
@@ -242,6 +259,10 @@
             "shoe_high_03": { name: "Adapt BB 2.0", price: 12500, img: "image/C03.jpg", desc: "自動繫帶科技的巔峰，透過手機 App 精確調整緊度，體驗真正的科技未來。" },
             "shoe_high_04": { name: "Air Yeezy 2 Red October", price: 350000, img: "image/C04.jpg", desc: "潮流史上的巔峰轉折點，全紅色的震撼視覺與稀缺性，使其成為永恆的傳奇。" }
         };
+
+        document.getElementById('navbarToggle').addEventListener('click', () => {
+            document.getElementById('navbarMenu').classList.toggle('active');
+        });
 
         document.addEventListener('DOMContentLoaded', () => {
             const urlParams = new URLSearchParams(window.location.search);

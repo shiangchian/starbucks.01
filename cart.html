@@ -46,27 +46,35 @@
         .social-links a:hover { color: white; transform: translateY(-3px); }
         
         @media (max-width: 768px) {
-            .cart-item { flex-direction: column; text-align: center; }
-            .cart-img { margin-right: 0; margin-bottom: 15px; width: 120px; height: 120px; }
+            .navbar { padding: 10px 15px; }
+            .brand-logo { font-size: 1.2rem; }
+            .brand-logo img { width: 30px; margin-right: 10px; }
+            .cart-item { flex-direction: column; text-align: center; padding: 20px; }
+            .cart-img { margin-right: 0; margin-bottom: 15px; width: 100px; height: 100px; }
             .text-end { text-align: center !important; margin-right: 0 !important; margin-top: 15px; }
             .trash-btn { margin-left: 0; margin-top: 15px; }
+            .footer { padding: 3rem 1.5rem; gap: 2rem; text-align: center; }
+            .social-links { justify-content: center; }
         }
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light py-3">
+    <nav class="navbar navbar-expand-lg navbar-dark py-3">
         <div class="container">
             <a class="navbar-brand brand-logo fs-4" href="index.html">
                 <img src="./image/loge01.png" alt="Logo"> NIKE TECH
             </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
+            </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto ms-4">
-                    <li class="nav-item"><a class="nav-link text-dark fw-bold" href="index.html"><i class="fa-solid fa-arrow-left"></i> 繼續選購</a></li>
+                <ul class="navbar-nav me-auto ms-lg-4">
+                    <li class="nav-item"><a class="nav-link text-white fw-bold" href="index.html"><i class="fa-solid fa-arrow-left"></i> 繼續選購</a></li>
                 </ul>
-                <div class="d-flex align-items-center gap-3">
-                    <span id="user-display" class="badge bg-white text-dark px-3 py-2" style="display:none; font-size: 0.95rem;"></span>
-                    <a id="btn-login" class="btn btn-outline-light rounded-0 px-4" href="login.html">登入</a>
-                    <button id="btn-logout" class="btn btn-outline-danger rounded-0 px-4" style="display:none;">登出</button>
+                <div class="d-flex align-items-center gap-2 mt-3 mt-lg-0">
+                    <span id="user-display" class="badge bg-white text-dark px-3 py-2" style="display:none; font-size: 0.85rem;"></span>
+                    <a id="btn-login" class="btn btn-outline-light rounded-0 px-3 py-2" href="login.html">登入</a>
+                    <button id="btn-logout" class="btn btn-outline-danger rounded-0 px-3 py-2" style="display:none;">登出</button>
                 </div>
             </div>
         </div>
