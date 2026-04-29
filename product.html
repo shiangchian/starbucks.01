@@ -4,53 +4,60 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>商品介紹 - 星巴克 Starbucks</title>
+    <title>商品介紹 - NIKE TECH</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #F0E6D2; min-height: 100vh; display: flex; flex-direction: column; }
-        
-        .navbar { background: #F5EEDC; padding: 10px 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; }
-        .navbar-container { display: flex; justify-content: space-between; align-items: center; gap: 15px; }
-        .navbar-logo { display: flex; align-items: center; font-size: 1.5rem; font-weight: bold; color: #006241; text-decoration: none; }
-        .navbar-logo .logo { width: 40px; height: 40px; margin-right: 10px; }
-        .navbar-menu { display: flex; list-style: none; gap: 20px; align-items: center; }
-        .navbar-menu a { text-decoration: none; color: #006241; font-weight: 500; transition: color 0.3s ease; font-size: 0.95rem; }
-        .navbar-menu a:hover { color: #00704A; }
-
-        .product-page-wrapper { flex: 1; padding: 4rem 2rem; display: flex; justify-content: center; align-items: center; }
-        .product-detail-container { 
-            background: white; max-width: 1000px; width: 100%; border-radius: 20px; 
-            box-shadow: 0 15px 35px rgba(0,0,0,0.08); display: flex; overflow: hidden; position: relative;
+        :root {
+            --bg-color: #000000;
+            --card-bg: #111111;
+            --accent-color: #ffffff;
+            --text-dim: #888888;
         }
-        .breadcrumb { position: absolute; top: 20px; left: 30px; font-size: 0.9rem; color: #888; }
-        .breadcrumb a { color: #00704A; text-decoration: none; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg-color); color: white; min-height: 100vh; display: flex; flex-direction: column; }
         
-        .image-section { flex: 1; background: linear-gradient(135deg, #E0F6FF 0%, #ffffff 100%); padding: 4rem; display: flex; justify-content: center; align-items: center; }
-        .image-section img { width: 100%; max-width: 350px; border-radius: 15px; box-shadow: 0 20px 40px rgba(0,0,0,0.15); transition: transform 0.3s ease; }
-        .image-section img:hover { transform: scale(1.03); }
+        .navbar { background: rgba(0, 0, 0, 0.9); padding: 15px 40px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); position: sticky; top: 0; z-index: 1000; }
+        .navbar-container { display: flex; justify-content: space-between; align-items: center; max-width: 1400px; margin: 0 auto; }
+        .navbar-logo { display: flex; align-items: center; font-family: 'Orbitron', sans-serif; font-size: 1.5rem; font-weight: 900; color: white; text-decoration: none; letter-spacing: 2px; }
+        .navbar-logo .logo { width: 40px; height: auto; margin-right: 15px; filter: invert(1); }
+        .navbar-menu { display: flex; list-style: none; gap: 25px; align-items: center; }
+        .navbar-menu a { text-decoration: none; color: var(--text-dim); font-weight: 500; transition: all 0.3s ease; font-size: 0.9rem; text-transform: uppercase; }
+        .navbar-menu a:hover { color: white; }
 
-        .info-section { flex: 1; padding: 4rem 3rem; display: flex; flex-direction: column; justify-content: center; }
-        .badge { display: inline-block; background: #FF6B6B; color: white; padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; margin-bottom: 15px; letter-spacing: 1px; }
-        .pd-title { font-size: 2.5rem; color: #006241; font-weight: 700; margin-bottom: 15px; }
-        .pd-desc { font-size: 1rem; color: #666; line-height: 1.8; margin-bottom: 25px; }
-        .pd-price { font-size: 2.2rem; font-weight: 700; color: #00704A; margin-bottom: 25px; }
+        .product-page-wrapper { flex: 1; padding: 5rem 2rem; display: flex; justify-content: center; align-items: center; }
+        .product-detail-container { 
+            background: var(--card-bg); max-width: 1200px; width: 100%; border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex; overflow: hidden; position: relative;
+        }
+        .breadcrumb { position: absolute; top: 30px; left: 40px; font-size: 0.8rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; }
+        .breadcrumb a { color: white; text-decoration: none; }
         
-        .option-group { margin-bottom: 20px; }
-        .option-title { font-weight: 600; color: #00704A; margin-bottom: 10px; font-size: 1.1rem; }
-        .pill-container { display: flex; flex-wrap: wrap; gap: 10px; }
-        .pill { padding: 8px 18px; border: 2px solid #ffffff; border-radius: 30px; color: #00704A; font-size: 0.95rem; font-weight: 500; cursor: pointer; transition: all 0.3s ease; }
-        .pill:hover { border-color: #00704A; color: #00704A; }
-        .pill.active { background: linear-gradient(135deg, #6F4E37 0%, #4A3623 100%); color: white; border-color: transparent; box-shadow: 0 4px 10px rgba(72, 201, 176, 0.3); }
+        .image-section { flex: 1.2; background: #0a0a0a; padding: 5rem; display: flex; justify-content: center; align-items: center; }
+        .image-section img { width: 100%; max-height: 450px; object-fit: contain; transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1); }
+        .image-section img:hover { transform: scale(1.1) rotate(-3deg); }
 
-        .qty-container { display: flex; align-items: center; gap: 15px; }
-        .qty-btn { background: #ffffff; color: #006241; border: none; width: 40px; height: 40px; border-radius: 50%; font-size: 1.2rem; font-weight: bold; cursor: pointer; transition: 0.3s; display: flex; justify-content: center; align-items: center; }
-        .qty-btn:hover { background: #00704A; color: white; transform: scale(1.1); }
-        .qty-input { width: 60px; height: 40px; text-align: center; border: 2px solid #ffffff; border-radius: 10px; font-size: 1.2rem; font-weight: bold; color: #006241; outline: none; }
+        .info-section { flex: 1; padding: 5rem 4rem; display: flex; flex-direction: column; justify-content: center; }
+        .badge { display: inline-block; background: white; color: black; padding: 6px 15px; border-radius: 2px; font-size: 0.75rem; font-family: 'Orbitron', sans-serif; font-weight: 900; margin-bottom: 20px; letter-spacing: 2px; text-transform: uppercase; }
+        .pd-title { font-family: 'Orbitron', sans-serif; font-size: 3rem; color: white; font-weight: 900; margin-bottom: 20px; letter-spacing: 2px; }
+        .pd-desc { font-size: 0.95rem; color: var(--text-dim); line-height: 1.8; margin-bottom: 30px; }
+        .pd-price { font-family: 'Orbitron', sans-serif; font-size: 2.5rem; font-weight: 900; color: white; margin-bottom: 40px; }
+        
+        .option-group { margin-bottom: 30px; }
+        .option-title { font-family: 'Orbitron', sans-serif; font-weight: 700; color: white; margin-bottom: 15px; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
+        .pill-container { display: flex; flex-wrap: wrap; gap: 12px; }
+        .pill { padding: 10px 22px; border: 1px solid #333; color: var(--text-dim); font-size: 0.85rem; font-family: 'Orbitron', sans-serif; font-weight: 700; cursor: pointer; transition: all 0.3s ease; border-radius: 2px; }
+        .pill:hover { border-color: white; color: white; }
+        .pill.active { background: white; color: black; border-color: white; }
 
-        .btn-add-cart { background: linear-gradient(135deg, #6F4E37 0%, #4A3623 100%); color: white; border: none; padding: 18px; border-radius: 50px; font-size: 1.2rem; font-weight: bold; cursor: pointer; transition: all 0.3s ease; margin-top: 20px; box-shadow: 0 10px 20px rgba(93, 173, 226, 0.3); display: flex; justify-content: center; align-items: center; gap: 10px; }
-        .btn-add-cart:hover { transform: translateY(-3px); box-shadow: 0 15px 25px rgba(93, 173, 226, 0.4); }
+        .qty-container { display: flex; align-items: center; gap: 20px; }
+        .qty-btn { background: #222; color: white; border: none; width: 45px; height: 45px; font-size: 1.2rem; cursor: pointer; transition: 0.3s; display: flex; justify-content: center; align-items: center; }
+        .qty-btn:hover { background: white; color: black; }
+        .qty-input { width: 70px; height: 45px; text-align: center; border: 1px solid #333; background: transparent; font-family: 'Orbitron', sans-serif; font-size: 1.2rem; font-weight: 900; color: white; outline: none; }
+
+        .btn-add-cart { background: white; color: black; border: none; padding: 20px; font-family: 'Orbitron', sans-serif; font-size: 1rem; font-weight: 900; cursor: pointer; transition: all 0.3s ease; margin-top: 30px; text-transform: uppercase; letter-spacing: 2px; display: flex; justify-content: center; align-items: center; gap: 15px; }
+        .btn-add-cart:hover { background: #ddd; transform: translateY(-3px); }
 
         @media (max-width: 900px) {
             .product-detail-container { flex-direction: column; }
@@ -58,21 +65,16 @@
             .info-section { padding: 3rem 2rem; } .pd-title { font-size: 2rem; }
         }
 
-        /* Footer Styles */
-        .footer { background: linear-gradient(135deg, #4A3623 0%, #3C2A1E 100%); padding: 4rem 2rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; position: relative; overflow: hidden; border-top: none; }
-        .footer::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #00704A, #004d33); }
-        .footer-section { display: flex; flex-direction: column; gap: 1.2rem; min-width: 0; }
-        .footer-section h3 { color: #F5EEDC; font-size: 1.3rem; font-weight: 600; position: relative; padding-bottom: 0.8rem; margin-bottom: 0.5rem; }
-        .footer-section h3::after { content: ''; position: absolute; bottom: 0; left: 0; width: 40px; height: 3px; background: linear-gradient(90deg, #00704A, #004d33); border-radius: 2px; }
-        .footer-section p, .footer-section ul li { color: #D2C4A7; font-size: 0.95rem; line-height: 1.6; margin: 0; }
-        .footer-section ul { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 0.8rem; }
-        .footer-section ul li { display: flex; align-items: center; transition: transform 0.3s ease; white-space: nowrap; }
-        .footer-section ul li a { text-decoration: none; color: inherit; width: 100%; display: inline-block; }
-        .footer-section ul li:hover { transform: translateX(5px); color: #00704A; }
-        .social-links { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 0.5rem; }
-        .social-links a { text-decoration: none; color: #D2C4A7; padding: 8px 16px; border-radius: 20px; font-size: 0.9rem; transition: all 0.3s ease; background: rgba(72, 201, 176, 0.1); display: inline-flex; align-items: center; white-space: nowrap; }
-        .social-links a:hover { background: linear-gradient(135deg, #6F4E37 0%, #4A3623 100%); color: white; transform: translateY(-2px); }
-        .social-logo { width: 20px; height: 20px; margin-right: 8px; }
+        .footer { background: #050505; padding: 6rem 40px; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 4rem; border-top: 1px solid rgba(255, 255, 255, 0.1); }
+        .footer-section { display: flex; flex-direction: column; gap: 1.5rem; }
+        .footer-section h3 { font-family: 'Orbitron', sans-serif; color: white; font-size: 1.1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; }
+        .footer-section p, .footer-section ul li { color: var(--text-dim); font-size: 0.85rem; line-height: 1.8; margin: 0; }
+        .footer-section ul { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 1rem; }
+        .footer-section ul li a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
+        .footer-section ul li a:hover { color: white; padding-left: 5px; }
+        .social-links { display: flex; gap: 1.5rem; margin-top: 1rem; }
+        .social-links a { text-decoration: none; color: var(--text-dim); font-size: 1.2rem; transition: all 0.3s ease; }
+        .social-links a:hover { color: white; transform: translateY(-3px); }
     </style>
 </head>
 <body>
@@ -80,18 +82,18 @@
     <nav class="navbar">
         <div class="navbar-container">
             <a href="index.html" class="navbar-logo">
-                <img src="image/logo.png" alt="星巴克 Starbucks" class="logo">
-                <span>星巴克 Starbucks</span>
+                <img src="image/loge01.png" alt="Nike Tech" class="logo">
+                <span>NIKE TECH</span>
             </a>
             <ul class="navbar-menu" id="navbarMenu">
-                <li><a href="index.html#drinks"><i class="fa-solid fa-mug-hot"></i> 飲品區</a></li>
-                <li><a href="index.html#cakes"><i class="fa-solid fa-cake-candles"></i> 蛋糕區</a></li>
-                <li><a href="index.html#breads"><i class="fa-solid fa-bread-slice"></i> 麵包區</a></li>
-                <li><a href="leaderboard.html"><i class="fa-solid fa-crown"></i> 排行榜</a></li>
+                <li><a href="index.html#casual"><i class="fa-solid fa-shoe-prints"></i> 休閒鞋</a></li>
+                <li><a href="index.html#sport"><i class="fa-solid fa-bolt"></i> 運動鞋</a></li>
+                <li><a href="index.html#high"><i class="fa-solid fa-gem"></i> 高價鞋</a></li>
+                <li><a href="leaderboard.html"><i class="fa-solid fa-ranking-star"></i> 排行榜</a></li>
                 <li><a href="cart.html"><i class="fa-solid fa-cart-shopping"></i> 購物車</a></li>
-                <li id="nav-login"><a href="login.html"><i class="fa-solid fa-user"></i> 登入/註冊</a></li>
-                <li id="nav-user" style="display:none;"><a href="#" id="user-display" style="color:#00704A; font-weight:bold;"></a></li>
-                <li id="nav-logout" style="display:none;"><a href="#" id="btn-logout" style="color:#e74c3c;">登出</a></li>
+                <li id="nav-login"><a href="login.html"><i class="fa-solid fa-user-gear"></i> 登入/註冊</a></li>
+                <li id="nav-user" style="display:none;"><a href="#" id="user-display" style="color:white; font-weight:bold;"></a></li>
+                <li id="nav-logout" style="display:none;"><a href="#" id="btn-logout" style="color:#ff3b30;">登出</a></li>
             </ul>
         </div>
     </nav>
@@ -105,30 +107,29 @@
             </div>
             
             <div class="info-section">
-                <div id="pd-badge" class="badge">推薦商品</div>
+                <div id="pd-badge" class="badge">LIMIT EDITION</div>
                 <h1 class="pd-title" id="pd-name">載入中...</h1>
                 <p class="pd-desc" id="pd-desc">商品描述載入中，請稍候...</p>
                 <div class="pd-price" id="pd-price">NT$ 0</div>
 
-                <div class="option-group" id="sugar-group">
-                    <div class="option-title"><i class="fa-solid fa-spoon"></i> 甜度選擇</div>
-                    <div class="pill-container" id="sugar-options">
-                        <div class="pill active" onclick="selectPill(this, 'sugar-options')">正常糖</div>
-                        <div class="pill" onclick="selectPill(this, 'sugar-options')">少糖</div>
-                        <div class="pill" onclick="selectPill(this, 'sugar-options')">半糖</div>
-                        <div class="pill" onclick="selectPill(this, 'sugar-options')">微糖</div>
-                        <div class="pill" onclick="selectPill(this, 'sugar-options')">無糖</div>
+                <div class="option-group" id="size-group">
+                    <div class="option-title"><i class="fa-solid fa-ruler"></i> 尺寸選擇 (US)</div>
+                    <div class="pill-container" id="size-options">
+                        <div class="pill" onclick="selectPill(this, 'size-options')">7</div>
+                        <div class="pill" onclick="selectPill(this, 'size-options')">8</div>
+                        <div class="pill active" onclick="selectPill(this, 'size-options')">9</div>
+                        <div class="pill" onclick="selectPill(this, 'size-options')">10</div>
+                        <div class="pill" onclick="selectPill(this, 'size-options')">11</div>
+                        <div class="pill" onclick="selectPill(this, 'size-options')">12</div>
                     </div>
                 </div>
 
-                <div class="option-group" id="ice-group">
-                    <div class="option-title"><i class="fa-solid fa-snowflake"></i> 冰塊選擇</div>
-                    <div class="pill-container" id="ice-options">
-                        <div class="pill active" onclick="selectPill(this, 'ice-options')">正常冰</div>
-                        <div class="pill" onclick="selectPill(this, 'ice-options')">少冰</div>
-                        <div class="pill" onclick="selectPill(this, 'ice-options')">微冰</div>
-                        <div class="pill" onclick="selectPill(this, 'ice-options')">去冰</div>
-                        <div class="pill" onclick="selectPill(this, 'ice-options')">完全去冰</div>
+                <div class="option-group" id="color-group">
+                    <div class="option-title"><i class="fa-solid fa-palette"></i> 顏色選擇</div>
+                    <div class="pill-container" id="color-options">
+                        <div class="pill active" onclick="selectPill(this, 'color-options')">黑/銀</div>
+                        <div class="pill" onclick="selectPill(this, 'color-options')">白/白</div>
+                        <div class="pill" onclick="selectPill(this, 'color-options')">全黑</div>
                     </div>
                 </div>
 
@@ -150,32 +151,30 @@
 
     <footer class="footer">
         <div class="footer-section">
-            <h3>品牌區塊</h3>
-            <p>星巴克 Starbucks - 飲品 x 蛋糕 x 麵包</p>
+            <h3>NIKE TECH</h3>
+            <p>引領未來科技與運動時尚的完美結合。</p>
             <div class="social-links">
-                <a href="https://instagram.com" target="_blank"><img src="image/Instagram-logo.png" alt="Instagram Logo" class="social-logo"> Instagram</a>
-                <a href="https://line.me" target="_blank"><img src="image/line-logo.png" alt="LINE Logo" class="social-logo"> LINE</a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-facebook"></i></a>
             </div>
         </div>
         <div class="footer-section">
-            <h3>BUSINESS 商業區塊</h3>
+            <h3>EXPLORE 探索</h3>
             <ul>
-                <li><a href="index.html#drinks">🥤 經典飲品</a></li>
-                <li><a href="index.html#cakes">🍰 精緻蛋糕</a></li>
-                <li><a href="index.html#breads">🥖 手工麵包</a></li>
+                <li><a href="index.html#casual">⚡ 潮流休閒鞋</a></li>
+                <li><a href="index.html#sport">🏃 專業運動鞋</a></li>
+                <li><a href="index.html#high">💎 限量高價鞋</a></li>
                 <li><a href="leaderboard.html">⭐ 熱銷排行</a></li>
             </ul>
         </div>
         <div class="footer-section">
-            <h3>CONTACT 聯繫區塊</h3>
-            <p>📧 電子郵件：a113280055@gm.usc.edu.tw</p>
-            <p>📞 電話：0952702813</p>
-            <p>🏪 地址：台北市大安區忠孝東路四段123號</p>
+            <h3>SUPPORT 支援</h3>
+            <p>📧 Email: support@niketech.com</p>
+            <p>📞 Phone: 0800-000-Nike</p>
         </div>
         <div class="footer-section">
-            <h3>版權資訊</h3>
-            <p>© 2025 星巴克 Starbucks. All rights reserved.</p>
-            <p>設計製作者：薛翔謙</p>
+            <h3>LEGAL 法律資訊</h3>
+            <p>© 2026 NIKE TECH. All rights reserved.</p>
         </div>
     </footer>
 
@@ -207,7 +206,7 @@
 
         document.getElementById('btn-logout').addEventListener('click', (e) => {
             e.preventDefault();
-            if(confirm("確定要登出嗎？")) { localStorage.removeItem('starbucks_cart'); signOut(auth).then(() => { window.location.href = "index.html"; }); }
+            if(confirm("確定要登出嗎？")) { localStorage.removeItem('nike_cart'); signOut(auth).then(() => { window.location.href = "index.html"; }); }
         });
     </script>
 
@@ -228,20 +227,20 @@
         }
 
         const productsDB = {
-            "tea01": { name: "水之森玄米抹茶", price: 65, img: "image/drink1.jpg", desc: "嚴選靜岡抹茶搭配焙煎玄米，茶湯翠綠，帶有濃郁的米香與抹茶回甘。" },
-            "tea02": { name: "英倫伯爵紅茶", price: 55, img: "image/drink2.jpg", desc: "特選錫蘭紅茶為基底，佐以佛手柑香氣，茶感醇厚，散發迷人優雅的英倫風情。" },
-            "tea03": { name: "珍珠鮮奶", price: 75, img: "image/drink3.jpg", desc: "Q彈手作珍珠搭配綠光牧場直送鮮乳，濃郁奶香與黑糖香氣完美融合。" },
-            "tea04": { name: "手炒黑糖鮮奶", price: 80, img: "image/drink1.jpg", desc: "職人每日手工慢炒黑糖，淋上醇厚鮮奶，甜而不膩，帶有獨特焦糖香。" },
+            "shoe_casual_01": { name: "Air Max Pulse", price: 4500, img: "image/A01.jpg", desc: "引領街頭潮流的巔峰之作，搭載全新加大的 Air 氣墊系統，提供全天候的舒適感與極簡科幻外型。" },
+            "shoe_casual_02": { name: "Nike Dunk Low", price: 3100, img: "image/A02.jpg", desc: "經典 80 年代球場風範回歸，簡潔有力且百搭的色塊設計，是每位收藏家的基礎必備。" },
+            "shoe_casual_03": { name: "Air Force 1 '07", price: 3400, img: "image/A03.jpg", desc: "傳奇仍在續寫。俐落的皮革邊緣與正好合適的亮點，讓你展現最純粹的街頭精神。" },
+            "shoe_casual_04": { name: "Blazer Mid '77", price: 3100, img: "image/A04.jpg", desc: "復古風格與現代科技的交匯，經典的 Swoosh 標誌與仿舊處理，展現不凡的藝術氣息。" },
             
-            "cake01": { name: "草莓鮮奶油蛋糕", price: 120, img: "image/cake1.jpg", desc: "綿密海綿蛋糕搭配新鮮草莓與特調鮮奶油，甜而不膩的夢幻滋味。" },
-            "cake02": { name: "芒果夏洛特", price: 130, img: "image/cake2.JPG", desc: "外圍酥脆手指餅乾，包裹著香濃芒果慕斯與新鮮芒果果肉，夏日限定。" },
-            "cake03": { name: "經典黑森林", price: 110, img: "image/cake1.jpg", desc: "濃郁巧克力蛋糕體加上酒漬櫻桃，鋪滿巧克力碎片，經典德式風味。" },
-            "cake04": { name: "法式檸檬塔", price: 100, img: "image/cake2.JPG", desc: "酥脆塔皮搭配酸甜平衡的法式檸檬奶油餡，清新解膩的好選擇。" },
+            "shoe_sport_01": { name: "Pegasus 40", price: 3500, img: "image/B01.jpg", desc: "回彈力十足的腳感，專為長距離奔跑設計. 無論是日常跑步還是馬拉松，它都是你的最佳夥伴。" },
+            "shoe_sport_02": { name: "Metcon 9", price: 4500, img: "image/B02.jpg", desc: "訓練場上的全能王者。更大的 Hyperlift 板件與橡膠包覆，提供極致的穩定性與抓地力。" },
+            "shoe_sport_03": { name: "LeBron NXXT Gen", price: 5200, img: "image/B03.jpg", desc: "為當今快節奏的比賽量身打造，靈活且支撐力強，讓你像國王一樣統治球場。" },
+            "shoe_sport_04": { name: "Zoom Fly 5", price: 4900, img: "image/B04.jpg", desc: "將競速感融入日常訓練。碳纖維板與 ZoomX 泡棉的組合，推動你不斷突破自我極限。" },
 
-            "bread01": { name: "法式經典長棍", price: 65, img: "image/bread1.JPG", desc: "外皮酥脆內裡充滿麥香，適合單吃或搭配濃湯的經典法國麵包。" },
-            "bread02": { name: "綜合雜糧麵包", price: 80, img: "image/bread2.JPG", desc: "富含多種穀物與堅果，口感紮實有嚼勁，健康滿分的美味選擇。" },
-            "bread03": { name: "奶油海鹽羅宋", price: 70, img: "image/bread3.JPG", desc: "濃郁奶油香氣與微鹹海鹽的完美結合，層層分明的酥脆口感。" },
-            "bread04": { name: "香蒜帕瑪森", price: 75, img: "image/bread1.JPG", desc: "塗滿特製香蒜奶油與帕瑪森起司，烤至金黃酥脆，香氣四溢。" }
+            "shoe_high_01": { name: "Nike Mag 2011", price: 880000, img: "image/C01.jpg", desc: "來自未來的傳奇。這不僅是一雙鞋，更是科技與電影文化的終極結晶，限量發行。" },
+            "shoe_high_02": { name: "Air Jordan 1 x Off-White", price: 150000, img: "image/C02.jpg", desc: "解構主義的代表作。Virgil Abloh 的天才設計將經典 Air Jordan 1 重新定義為藝術品。" },
+            "shoe_high_03": { name: "Adapt BB 2.0", price: 12500, img: "image/C03.jpg", desc: "自動繫帶科技的巔峰，透過手機 App 精確調整緊度，體驗真正的科技未來。" },
+            "shoe_high_04": { name: "Air Yeezy 2 Red October", price: 350000, img: "image/C04.jpg", desc: "潮流史上的巔峰轉折點，全紅色的震撼視覺與稀缺性，使其成為永恆的傳奇。" }
         };
 
         document.addEventListener('DOMContentLoaded', () => {
@@ -250,39 +249,31 @@
 
             if(productId && productsDB[productId]) {
                 const pd = productsDB[productId];
-                document.title = `${pd.name} - 星巴克 Starbucks`;
+                document.title = `${pd.name} - NIKE TECH`;
                 document.getElementById('pd-image').src = pd.img;
                 document.getElementById('pd-name').innerText = pd.name;
                 document.getElementById('pd-desc').innerText = pd.desc;
-                document.getElementById('pd-price').innerText = `NT$ ${pd.price}`;
+                document.getElementById('pd-price').innerText = `NT$ ${pd.price.toLocaleString()}`;
                 
-                // 動態判斷是否顯示冰塊甜度
-                if (!productId.startsWith('tea')) {
-                    document.getElementById('sugar-group').style.display = 'none';
-                    document.getElementById('ice-group').style.display = 'none';
-                    document.getElementById('pd-badge').innerText = '精緻蛋糕 / 手工麵包';
-                    document.getElementById('pd-badge').style.background = '#2ECC71';
-                }
+                // 顯示尺寸與顏色選擇
+                document.getElementById('size-group').style.display = 'block';
+                document.getElementById('color-group').style.display = 'block';
+                document.getElementById('pd-badge').innerText = 'EXLUSIVE TECH';
+                document.getElementById('pd-badge').style.background = 'white';
 
                 document.getElementById('add-to-cart-btn').addEventListener('click', () => {
                     const qty = parseInt(document.getElementById('pd-qty').value);
-                    let sugar = '--';
-                    let ice = '--';
+                    const size = document.querySelector('#size-options .active').innerText;
+                    const color = document.querySelector('#color-options .active').innerText;
                     
-                    if (productId.startsWith('tea')) {
-                        sugar = document.querySelector('#sugar-options .active').innerText;
-                        ice = document.querySelector('#ice-options .active').innerText;
-                    }
-                    
-                    let cart = JSON.parse(localStorage.getItem('starbucks_cart')) || [];
-                    const existingIndex = cart.findIndex(item => item.id === productId && item.sugar === sugar && item.ice === ice);
+                    let cart = JSON.parse(localStorage.getItem('nike_cart')) || [];
+                    const existingIndex = cart.findIndex(item => item.id === productId && item.size === size && item.color === color);
                     
                     if (existingIndex > -1) { cart[existingIndex].qty += qty; } 
-                    else { cart.push({ id: productId, qty: qty, sugar: sugar, ice: ice }); }
+                    else { cart.push({ id: productId, qty: qty, size: size, color: color }); }
 
-                    localStorage.setItem('starbucks_cart', JSON.stringify(cart));
-                    let alertText = productId.startsWith('tea') ? `(${sugar}/${ice}) ` : '';
-                    alert(`【${pd.name}】${alertText}x ${qty} 已加入購物車！`);
+                    localStorage.setItem('nike_cart', JSON.stringify(cart));
+                    alert(`【${pd.name}】(尺寸:${size} / 顏色:${color}) x ${qty} 已加入購物車！`);
                     window.location.href = "cart.html";
                 });
             } else {

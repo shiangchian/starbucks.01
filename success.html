@@ -3,22 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>操作成功 - 星巴克 Starbucks</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700;900&display=swap" rel="stylesheet">
+    <title>操作成功 - NIKE TECH</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
-        * { box-sizing: border-box; }
-        body {
-            margin: 0;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Noto Sans TC', sans-serif;
-            /* 與 login.html 相同的漸層背景 */
-            background: linear-gradient(135deg, #F0E6D2 0%, #C3B091 100%);
-            overflow: hidden;
+        :root {
+            --bg-color: #000000;
+            --card-bg: #111111;
+            --accent-color: #ffffff;
+            --text-dim: #888888;
+            --tech-red: #ff3b30;
+            --tech-green: #34c759;
         }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg-color); color: white; min-height: 100vh; display: flex; justify-content: center; align-items: center; padding: 20px; }
 
         /* 背景漂浮物特效 */
         .background-pattern { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0.1; background-image: radial-gradient(circle at 20% 80%, #ffffff 0%, transparent 50%), radial-gradient(circle at 80% 20%, #ffffff 0%, transparent 50%); z-index: 0; }
@@ -28,111 +26,77 @@
         .floating-element:nth-child(3) { width: 60px; height: 60px; bottom: 20%; left: 25%; animation-delay: 4s; }
         @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-20px); } }
 
-        /* 毛玻璃外層卡片 */
         .glass-card {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 25px;
-            padding: 40px;
-            width: 90%;
-            max-width: 650px;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
-            z-index: 1;
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 50px;
+            width: 100%;
+            max-width: 700px;
             text-align: center;
-            animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-        @keyframes slideUp { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-
-        /* 教授要求的紅框區塊 (質感升級版) */
-        .professor-box {
-            border: 3px solid #FF4757; /* 鮮豔的紅色邊框 */
-            background: #ffffff;
-            border-radius: 20px;
-            padding: 50px 30px 40px 30px;
             position: relative;
-            box-shadow: inset 0 0 20px rgba(255, 71, 87, 0.05);
+            z-index: 1;
         }
-
-        /* 頂部打勾圖示 */
+        .professor-box {
+            border: 2px solid var(--tech-red);
+            background: rgba(255, 59, 48, 0.05);
+            padding: 60px 40px;
+            position: relative;
+        }
         .success-icon {
             position: absolute;
-            top: -40px;
+            top: -45px;
             left: 50%;
             transform: translateX(-50%);
-            background: white;
-            border-radius: 50%;
-            color: #2ED573;
-            font-size: 70px;
-            text-shadow: 0 10px 20px rgba(46, 213, 115, 0.3);
-            animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.5s backwards;
+            background: var(--bg-color);
+            color: var(--tech-green);
+            font-size: 80px;
+            padding: 10px;
         }
-        @keyframes popIn { 0% { transform: translateX(-50%) scale(0); } 100% { transform: translateX(-50%) scale(1); } }
-
-        /* 教授要求的：綠字標題 */
         .msg-title {
-            color: #2ED573;
-            font-size: 38px;
+            font-family: 'Orbitron', sans-serif;
+            color: var(--tech-green);
+            font-size: 2.5rem;
             font-weight: 900;
-            margin: 10px 0 15px 0;
+            margin-bottom: 10px;
             letter-spacing: 2px;
         }
-
-        /* 教授要求的：紅字副標題 */
         .msg-welcome {
-            color: #FF4757;
-            font-size: 28px;
+            font-family: 'Orbitron', sans-serif;
+            color: var(--tech-red);
+            font-size: 1.5rem;
             font-weight: 700;
-            margin: 0 0 35px 0;
+            margin-bottom: 40px;
+            letter-spacing: 1px;
         }
-
-        /* 教授要求的：黑框雙按鈕 (圓角膠囊美化版) */
         .btn-group {
             display: flex;
             justify-content: center;
             gap: 20px;
-            flex-wrap: wrap;
         }
-
         .btn-custom {
-            border: 2px solid #006241; /* 深色黑框 */
-            border-radius: 50px;
-            padding: 12px 30px;
-            font-size: 18px;
-            font-weight: 800;
+            padding: 15px 35px;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            font-size: 0.9rem;
             text-decoration: none;
-            color: #006241;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            color: black;
+            background: white;
+            transition: 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
-
-        /* 左邊藍色系按鈕 */
-        .btn-home { background: #E0F6FF; }
-        .btn-home:hover {
-            background: #00704A; color: white; border-color: #00704A;
-            transform: translateY(-3px); box-shadow: 0 10px 20px rgba(93, 173, 226, 0.3);
+        .btn-custom:hover {
+            background: #ddd;
+            transform: translateY(-3px);
         }
-
-        /* 右邊綠色系按鈕 */
-        .btn-action { background: #f2f6f4; }
-        .btn-action:hover {
-            background: #00704A; color: white; border-color: #00704A;
-            transform: translateY(-3px); box-shadow: 0 10px 20px rgba(72, 201, 176, 0.3);
-        }
-
-        /* 倒數計時文字 */
         .timer-text {
-            margin-top: 25px;
-            color: #888;
-            font-size: 15px;
-            font-weight: 500;
+            margin-top: 40px;
+            color: var(--text-dim);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
         .timer-text span {
-            color: #00704A;
-            font-size: 22px;
-            font-weight: 900;
             margin: 0 5px;
         }
 
@@ -182,14 +146,14 @@
 
         // 根據來源變更顯示內容
         if (type === 'login') {
-            titleEl.innerText = "會員登入成功";
-            welcomeEl.innerHTML = `歡迎 <span style="color:#006241;">${name}</span> 回來`;
-            actionLink.innerHTML = `<i class="fa-solid fa-cart-shopping"></i> 前往購物車`;
+            titleEl.innerText = "ACCESS GRANTED";
+            welcomeEl.innerHTML = `WELCOME BACK, <span style="color:white;">${name}</span>`;
+            actionLink.innerHTML = `<i class="fa-solid fa-cart-shopping"></i> GO TO CART`;
             actionLink.href = "cart.html";
         } else {
-            titleEl.innerText = "會員註冊成功";
-            welcomeEl.innerHTML = `歡迎 <span style="color:#006241;">${name}</span> 成為會員`;
-            actionLink.innerHTML = `<i class="fa-solid fa-arrow-right-to-bracket"></i> 點選立即登入`;
+            titleEl.innerText = "ACCOUNT CREATED";
+            welcomeEl.innerHTML = `WELCOME, <span style="color:white;">${name}</span>`;
+            actionLink.innerHTML = `<i class="fa-solid fa-arrow-right-to-bracket"></i> SIGN IN NOW`;
             actionLink.href = "login.html";
         }
 

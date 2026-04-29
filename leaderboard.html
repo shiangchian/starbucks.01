@@ -4,209 +4,185 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>熱銷排行榜 - 星巴克 Starbucks</title>
+    <title>熱銷排行榜 - NIKE TECH</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #F0E6D2; min-height: 100vh; display: flex; flex-direction: column; }
-        
-        /* Navbar Styles */
-        .navbar { background: #F5EEDC; padding: 10px 20px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); position: sticky; top: 0; z-index: 1000; }
-        .navbar-container { display: flex; justify-content: space-between; align-items: center; gap: 15px; }
-        .navbar-logo { display: flex; align-items: center; font-size: 1.5rem; font-weight: bold; color: #006241; text-decoration: none; }
-        .navbar-logo .logo { width: 40px; height: 40px; margin-right: 10px; }
-        .navbar-menu { display: flex; list-style: none; gap: 20px; align-items: center; margin: 0; padding: 0; }
-        .navbar-menu li { position: relative; }
-        .navbar-menu a { text-decoration: none; color: #006241; font-weight: 500; transition: color 0.3s ease; font-size: 0.95rem;}
-        .navbar-menu a:hover { color: #00704A; }
-        .navbar-toggle { display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #006241; }
-
-        /* --- 排行榜專屬樣式 --- */
-        .leaderboard-wrapper { flex: 1; padding: 4rem 1rem; background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%); }
-        .leaderboard-header { text-align: center; margin-bottom: 3rem; animation: fadeInUp 1s ease-out forwards; }
-        .leaderboard-header h1 { font-size: 3rem; color: #006241; font-weight: 800; letter-spacing: 2px; text-shadow: 2px 2px 4px rgba(0,0,0,0.1); }
-        .leaderboard-header p { font-size: 1.2rem; color: #00704A; margin-top: 10px; }
-        
-        .rank-container { max-width: 900px; margin: 0 auto; }
-        
-        .rank-card { 
-            display: flex; align-items: center; background: white; border-radius: 20px; 
-            padding: 20px 30px; margin-bottom: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            transition: all 0.3s ease; opacity: 0; transform: translateY(50px);
+        :root {
+            --bg-color: #000000;
+            --card-bg: #111111;
+            --accent-color: #ffffff;
+            --text-dim: #888888;
+            --gold: #FFD700;
+            --silver: #C0C0C0;
+            --bronze: #CD7F32;
         }
-        .rank-card.visible { opacity: 1; transform: translateY(0); }
-        .rank-card:hover { transform: translateY(-5px) scale(1.02); box-shadow: 0 15px 40px rgba(0,0,0,0.12); }
-
-        .rank-1 { background: linear-gradient(to right, #ffffff, #fffdf0); border: 2px solid rgba(255, 215, 0, 0.3); }
-        .rank-2 { background: linear-gradient(to right, #ffffff, #f8f9fa); border: 2px solid rgba(192, 192, 192, 0.3); }
-        .rank-3 { background: linear-gradient(to right, #ffffff, #fffaf5); border: 2px solid rgba(205, 127, 50, 0.3); }
-
-        .rank-badge { width: 80px; text-align: center; font-size: 2.5rem; font-weight: 900; margin-right: 20px; }
-        .badge-gold { color: #FFD700; text-shadow: 0 2px 5px rgba(255, 215, 0, 0.4); }
-        .badge-silver { color: #C0C0C0; text-shadow: 0 2px 5px rgba(192, 192, 192, 0.4); }
-        .badge-bronze { color: #CD7F32; text-shadow: 0 2px 5px rgba(205, 127, 50, 0.4); }
-        .badge-normal { color: #A9DFBF; font-size: 2rem; }
-
-        .rank-img { width: 110px; height: 110px; border-radius: 50%; object-fit: cover; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin-right: 30px; border: 3px solid #E0F6FF; }
+        body { background: var(--bg-color); color: white; font-family: 'Inter', sans-serif; min-height: 100vh; display: flex; flex-direction: column; }
         
+        .navbar { background: rgba(0, 0, 0, 0.9) !important; border-bottom: 1px solid rgba(255, 255, 255, 0.1); position: sticky; top: 0; z-index: 1000; }
+        .brand-logo { font-family: 'Orbitron', sans-serif; font-weight: 900; color: white; text-decoration: none; display: flex; align-items: center; letter-spacing: 2px; }
+        .brand-logo img { width: 40px; height: auto; margin-right: 15px; filter: invert(1); }
+        
+        .leaderboard-wrapper { flex: 1; padding: 4rem 1rem; }
+        .leaderboard-header { text-align: center; margin-bottom: 3rem; }
+        .leaderboard-header h1 { font-family: 'Orbitron', sans-serif; font-size: 3rem; color: white; letter-spacing: 4px; }
+        
+        .leaderboard-container { max-width: 900px; margin: 0 auto; background: var(--card-bg); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 4px; padding: 40px; }
+        .rank-card { background: #1a1a1a; border-radius: 4px; margin-bottom: 20px; padding: 25px; display: flex; align-items: center; transition: 0.3s; border-left: 5px solid #333; }
+        .rank-card:hover { transform: translateX(10px); background: #222; border-left-color: var(--accent-color); }
+        
+        .rank-number { font-family: 'Orbitron', sans-serif; font-size: 2.5rem; font-weight: 900; width: 60px; text-align: center; margin-right: 30px; color: var(--text-dim); }
+        .rank-img-container { width: 120px; height: 120px; background: #000; display: flex; align-items: center; justify-content: center; margin-right: 30px; border-radius: 2px; }
+        .rank-img { width: 90%; height: auto; object-fit: contain; }
         .rank-info { flex-grow: 1; }
-        .rank-name { font-size: 1.5rem; font-weight: 700; color: #006241; margin-bottom: 8px; }
-        .rank-desc { font-size: 0.95rem; color: #666; margin-bottom: 10px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-        .rank-price { font-size: 1.3rem; font-weight: bold; color: #00704A; }
+        .rank-name { font-family: 'Orbitron', sans-serif; font-size: 1.4rem; font-weight: 700; color: white; margin-bottom: 5px; }
+        .rank-price { font-family: 'Orbitron', sans-serif; font-size: 1.2rem; color: var(--accent-color); font-weight: bold; }
+        
+        .rank-1 { border-left-color: var(--gold); } .rank-1 .rank-number { color: var(--gold); }
+        .rank-2 { border-left-color: var(--silver); } .rank-2 .rank-number { color: var(--silver); }
+        .rank-3 { border-left-color: var(--bronze); } .rank-3 .rank-number { color: var(--bronze); }
 
-        .rank-actions { display: flex; gap: 10px; flex-direction: column; }
-        .btn-rank { padding: 10px 20px; border-radius: 50px; font-weight: bold; border: none; cursor: pointer; transition: 0.3s; text-align: center; text-decoration: none; font-size: 0.95rem; }
-        .btn-cart { background: linear-gradient(135deg, #6F4E37 0%, #4A3623 100%); color: white; box-shadow: 0 4px 10px rgba(93,173,226,0.3); }
-        .btn-cart:hover { transform: translateY(-2px); box-shadow: 0 6px 15px rgba(93,173,226,0.5); color: white; }
-        .btn-more { background: white; border: 2px solid #00704A; color: #00704A; }
-        .btn-more:hover { background: #E0F6FF; transform: translateY(-2px); }
+        .rank-actions { display: flex; gap: 10px; }
+        .btn-rank { padding: 12px 20px; font-family: 'Orbitron', sans-serif; font-weight: 900; border-radius: 2px; text-transform: uppercase; cursor: pointer; transition: 0.3s; font-size: 0.8rem; letter-spacing: 1px; }
+        .btn-cart { background: white; color: black; border: none; }
+        .btn-cart:hover { background: #ccc; }
+        .btn-more { background: transparent; color: white; border: 1px solid #444; text-decoration: none; display: flex; align-items: center; }
+        .btn-more:hover { border-color: white; }
 
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-
+        .footer { background: #050505; padding: 6rem 40px; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 4rem; border-top: 1px solid rgba(255, 255, 255, 0.1); margin-top: auto; }
+        .footer-section { display: flex; flex-direction: column; gap: 1.5rem; }
+        .footer-section h3 { font-family: 'Orbitron', sans-serif; color: white; font-size: 1.1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; }
+        .footer-section p, .footer-section ul li { color: var(--text-dim); font-size: 0.85rem; line-height: 1.8; margin: 0; }
+        .footer-section ul { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 1rem; }
+        .footer-section ul li a { text-decoration: none; color: inherit; transition: all 0.3s ease; }
+        .footer-section ul li a:hover { color: white; padding-left: 5px; }
+        .social-links { display: flex; gap: 1.5rem; margin-top: 1rem; }
+        .social-links a { text-decoration: none; color: var(--text-dim); font-size: 1.2rem; transition: all 0.3s ease; }
+        .social-links a:hover { color: white; transform: translateY(-3px); }
+        
         @media (max-width: 768px) {
-            .navbar-menu { display: none; flex-direction: column; background: #ffffff; position: absolute; top: 100%; left: 0; right: 0; width: 100%; padding: 10px 0; }
-            .navbar-menu.active { display: flex; } .navbar-toggle { display: block; }
-            .rank-card { flex-direction: column; text-align: center; padding: 30px 20px; }
-            .rank-badge { margin-right: 0; margin-bottom: 15px; }
-            .rank-img { margin-right: 0; margin-bottom: 20px; width: 130px; height: 130px; }
-            .rank-actions { flex-direction: row; margin-top: 20px; width: 100%; justify-content: center; }
-            .btn-rank { flex: 1; }
+            .rank-card { flex-direction: column; text-align: center; }
+            .rank-number { margin-right: 0; margin-bottom: 15px; }
+            .rank-img-container { margin-right: 0; margin-bottom: 20px; }
+            .rank-actions { justify-content: center; margin-top: 20px; }
         }
-
-        /* Footer Styles */
-        .footer { background: linear-gradient(135deg, #4A3623 0%, #3C2A1E 100%); padding: 4rem 2rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; position: relative; overflow: hidden; border-top: none; }
-        .footer::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #00704A, #004d33); }
-        .footer-section { display: flex; flex-direction: column; gap: 1.2rem; min-width: 0; }
-        .footer-section h3 { color: #F5EEDC; font-size: 1.3rem; font-weight: 600; position: relative; padding-bottom: 0.8rem; margin-bottom: 0.5rem; }
-        .footer-section h3::after { content: ''; position: absolute; bottom: 0; left: 0; width: 40px; height: 3px; background: linear-gradient(90deg, #00704A, #004d33); border-radius: 2px; }
-        .footer-section p, .footer-section ul li { color: #D2C4A7; font-size: 0.95rem; line-height: 1.6; margin: 0; }
-        .footer-section ul { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 0.8rem; }
-        .footer-section ul li a { text-decoration: none; color: inherit; width: 100%; display: inline-block; transition: transform 0.3s; }
-        .footer-section ul li a:hover { transform: translateX(5px); color: #00704A; }
-        .social-links { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 0.5rem; }
-        .social-links a { text-decoration: none; color: #D2C4A7; padding: 8px 16px; border-radius: 20px; font-size: 0.9rem; transition: all 0.3s ease; background: rgba(72, 201, 176, 0.1); display: inline-flex; align-items: center; }
-        .social-links a:hover { background: linear-gradient(135deg, #6F4E37 0%, #4A3623 100%); color: white; transform: translateY(-2px); }
-        .social-logo { width: 20px; height: 20px; margin-right: 8px; }
     </style>
 </head>
 <body>
 
-    <nav class="navbar">
-        <div class="navbar-container">
-            <a href="index.html" class="navbar-logo">
-                <img src="image/logo.png" alt="星巴克 Starbucks" class="logo">
-                <span>星巴克 Starbucks</span>
+    <nav class="navbar navbar-expand-lg navbar-dark py-3">
+        <div class="container">
+            <a class="navbar-brand brand-logo fs-3" href="index.html">
+                <img src="image/loge01.png" alt="Logo"> NIKE TECH
             </a>
-            <button class="navbar-toggle" id="navbarToggle">☰</button>
-            <ul class="navbar-menu" id="navbarMenu">
-                <li><a href="index.html#drinks"><i class="fa-solid fa-mug-hot"></i> 飲品區</a></li>
-                <li><a href="index.html#cakes"><i class="fa-solid fa-cake-candles"></i> 蛋糕區</a></li>
-                <li><a href="index.html#breads"><i class="fa-solid fa-bread-slice"></i> 麵包區</a></li>
-                <li><a href="leaderboard.html" style="color: #00704A; font-weight: bold;"><i class="fa-solid fa-crown"></i> 排行榜</a></li>
-                <li><a href="cart.html"><i class="fa-solid fa-cart-shopping"></i> 購物車</a></li>
-                <li id="nav-login"><a href="login.html"><i class="fa-solid fa-user"></i> 登入/註冊</a></li>
-                <li id="nav-user" style="display:none;"><a href="#" id="user-display" style="color:#00704A; font-weight:bold;"></a></li>
-                <li id="nav-logout" style="display:none;"><a href="#" id="btn-logout" style="color:#e74c3c;">登出</a></li>
-            </ul>
+            <div class="d-flex align-items-center gap-3">
+                <span id="user-display" class="badge bg-white text-dark px-3 py-2" style="display:none; font-size: 0.9rem;"></span>
+                <a id="btn-login" class="btn btn-outline-light rounded-0 px-4" href="login.html">登入</a>
+                <button id="btn-logout" class="btn btn-outline-danger rounded-0 px-4" style="display:none;">登出</button>
+            </div>
         </div>
     </nav>
 
     <div class="leaderboard-wrapper">
         <div class="leaderboard-header">
-            <h1><i class="fa-solid fa-crown text-warning"></i> 本月熱銷排行榜</h1>
-            <p>星巴克精選，最多顧客的美味推薦</p>
+            <h1>TECH TOP SELLING</h1>
         </div>
 
-        <div class="rank-container">
+        <div class="leaderboard-container">
+            <!-- Rank 1 -->
             <div class="rank-card rank-1">
-                <div class="rank-badge badge-gold"><i class="fa-solid fa-medal"></i> 1</div>
-                <img src="image/drink3.jpg" alt="珍珠鮮奶" class="rank-img">
+                <div class="rank-number">01</div>
+                <div class="rank-img-container">
+                    <img src="image/C01.jpg" alt="Nike Mag 2011" class="rank-img">
+                </div>
                 <div class="rank-info">
-                    <div class="rank-name">珍珠鮮奶</div>
-                    <div class="rank-desc">Q彈手作珍珠搭配綠光牧場直送鮮乳，濃郁奶香與黑糖香氣完美融合，無咖啡因首選！</div>
-                    <div class="rank-price">NT$ 75</div>
+                    <div class="rank-name">Nike Mag 2011</div>
+                    <div class="rank-price">NT$ 880,000</div>
                 </div>
                 <div class="rank-actions">
-                    <button class="btn-rank btn-cart" onclick="addToCart('tea03')"><i class="fa-solid fa-cart-plus"></i> 加入</button>
-                    <a href="product.html?id=tea03" class="btn-rank btn-more">詳細</a>
+                    <button class="btn-rank btn-cart" onclick="addToCart('shoe_high_01')">加入購物車</button>
+                    <a href="product.html?id=shoe_high_01" class="btn-rank btn-more">詳細</a>
                 </div>
             </div>
 
+            <!-- Rank 2 -->
             <div class="rank-card rank-2">
-                <div class="rank-badge badge-silver"><i class="fa-solid fa-medal"></i> 2</div>
-                <img src="image/drink1.jpg" alt="水之森玄米抹茶" class="rank-img">
+                <div class="rank-number">02</div>
+                <div class="rank-img-container">
+                    <img src="image/B03.jpg" alt="LeBron NXXT Gen" class="rank-img">
+                </div>
                 <div class="rank-info">
-                    <div class="rank-name">水之森玄米抹茶</div>
-                    <div class="rank-desc">嚴選靜岡抹茶搭配焙煎玄米，茶湯翠綠，帶有濃郁的米香與抹茶回甘，層次豐富的經典風味。</div>
-                    <div class="rank-price">NT$ 65</div>
+                    <div class="rank-name">LeBron NXXT Gen</div>
+                    <div class="rank-price">NT$ 5,200</div>
                 </div>
                 <div class="rank-actions">
-                    <button class="btn-rank btn-cart" onclick="addToCart('tea01')"><i class="fa-solid fa-cart-plus"></i> 加入</button>
-                    <a href="product.html?id=tea01" class="btn-rank btn-more">詳細</a>
+                    <button class="btn-rank btn-cart" onclick="addToCart('shoe_sport_03')">加入購物車</button>
+                    <a href="product.html?id=shoe_sport_03" class="btn-rank btn-more">詳細</a>
                 </div>
             </div>
 
+            <!-- Rank 3 -->
             <div class="rank-card rank-3">
-                <div class="rank-badge badge-bronze"><i class="fa-solid fa-medal"></i> 3</div>
-                <img src="image/drink1.jpg" alt="手炒黑糖鮮奶" class="rank-img">
+                <div class="rank-number">03</div>
+                <div class="rank-img-container">
+                    <img src="image/A01.jpg" alt="Air Max Pulse" class="rank-img">
+                </div>
                 <div class="rank-info">
-                    <div class="rank-name">手炒黑糖鮮奶</div>
-                    <div class="rank-desc">職人每日手工慢炒黑糖，淋上醇厚鮮奶，甜而不膩，帶有獨特焦糖香氣的暖心之作。</div>
-                    <div class="rank-price">NT$ 80</div>
+                    <div class="rank-name">Air Max Pulse</div>
+                    <div class="rank-price">NT$ 4,500</div>
                 </div>
                 <div class="rank-actions">
-                    <button class="btn-rank btn-cart" onclick="addToCart('tea04')"><i class="fa-solid fa-cart-plus"></i> 加入</button>
-                    <a href="product.html?id=tea04" class="btn-rank btn-more">詳細</a>
+                    <button class="btn-rank btn-cart" onclick="addToCart('shoe_casual_01')">加入購物車</button>
+                    <a href="product.html?id=shoe_casual_01" class="btn-rank btn-more">詳細</a>
                 </div>
             </div>
 
+            <!-- Rank 4 -->
             <div class="rank-card">
-                <div class="rank-badge badge-normal">4</div>
-                <img src="image/drink2.jpg" alt="英倫伯爵紅茶" class="rank-img">
+                <div class="rank-number">04</div>
+                <div class="rank-img-container">
+                    <img src="image/A03.jpg" alt="Air Force 1 '07" class="rank-img">
+                </div>
                 <div class="rank-info">
-                    <div class="rank-name">英倫伯爵紅茶</div>
-                    <div class="rank-desc">特選錫蘭紅茶為基底，佐以佛手柑香氣，茶感醇厚，散發迷人優雅的英倫風情。</div>
-                    <div class="rank-price">NT$ 55</div>
+                    <div class="rank-name">Air Force 1 '07</div>
+                    <div class="rank-price">NT$ 3,400</div>
                 </div>
                 <div class="rank-actions">
-                    <button class="btn-rank btn-cart" onclick="addToCart('tea02')"><i class="fa-solid fa-cart-plus"></i> 加入</button>
-                    <a href="product.html?id=tea02" class="btn-rank btn-more">詳細</a>
+                    <button class="btn-rank btn-cart" onclick="addToCart('shoe_casual_03')">加入購物車</button>
+                    <a href="product.html?id=shoe_casual_03" class="btn-rank btn-more">詳細</a>
                 </div>
             </div>
-
-
         </div>
     </div>
 
     <footer class="footer">
         <div class="footer-section">
-            <h3>品牌區塊</h3>
-            <p>星巴克 Starbucks - 飲品 x 蛋糕 x 麵包</p>
+            <h3>NIKE TECH</h3>
+            <p>引領未來科技與運動時尚的完美結合。</p>
             <div class="social-links">
-                <a href="https://instagram.com" target="_blank"><img src="image/Instagram-logo.png" alt="Instagram Logo" class="social-logo"> Instagram</a>
-                <a href="https://line.me" target="_blank"><img src="image/line-logo.png" alt="LINE Logo" class="social-logo"> LINE</a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-facebook"></i></a>
             </div>
         </div>
         <div class="footer-section">
-            <h3>BUSINESS 商業區塊</h3>
+            <h3>EXPLORE 探索</h3>
             <ul>
-                <li><a href="index.html#drinks">🥤 經典飲品</a></li>
-                <li><a href="index.html#cakes">🍰 精緻蛋糕</a></li>
-                <li><a href="index.html#breads">🥖 手工麵包</a></li>
+                <li><a href="index.html#casual">⚡ 潮流休閒鞋</a></li>
+                <li><a href="index.html#sport">🏃 專業運動鞋</a></li>
+                <li><a href="index.html#high">💎 限量高價鞋</a></li>
                 <li><a href="leaderboard.html">⭐ 熱銷排行</a></li>
             </ul>
         </div>
         <div class="footer-section">
-            <h3>CONTACT 聯繫區塊</h3>
-            <p>📧 電子郵件：a113280055@gm.usc.edu.tw</p>
-            <p>📞 電話：0952702813</p>
-            <p>🏪 地址：台北市大安區忠孝東路四段123號</p>
+            <h3>SUPPORT 支援</h3>
+            <p>📧 Email: support@niketech.com</p>
+            <p>📞 Phone: 0800-000-Nike</p>
         </div>
         <div class="footer-section">
-            <h3>版權資訊</h3>
-            <p>© 2025 星巴克 Starbucks. All rights reserved.</p>
-            <p>設計製作者：薛翔謙</p>
+            <h3>LEGAL 法律資訊</h3>
+            <p>© 2026 NIKE TECH. All rights reserved.</p>
         </div>
     </footer>
 
@@ -219,57 +195,42 @@
         const auth = getAuth(app);
 
         onAuthStateChanged(auth, (user) => {
-            const navLogin = document.getElementById('nav-login');
-            const navUser = document.getElementById('nav-user');
-            const navLogout = document.getElementById('nav-logout');
+            const btnLogin = document.getElementById('btn-login');
+            const btnLogout = document.getElementById('btn-logout');
             const userDisplay = document.getElementById('user-display');
 
             if (user) {
-                navLogin.style.display = 'none';
-                navUser.style.display = 'block';
-                navLogout.style.display = 'block';
+                btnLogin.style.display = 'none';
+                userDisplay.style.display = 'block';
+                btnLogout.style.display = 'block';
                 userDisplay.innerHTML = `<i class="fa-solid fa-user-check me-1"></i> 會員 ${user.displayName || user.email.split('@')[0]}`;
             } else {
-                navLogin.style.display = 'block';
-                navUser.style.display = 'none';
-                navLogout.style.display = 'none';
+                btnLogin.style.display = 'block';
+                userDisplay.style.display = 'none';
+                btnLogout.style.display = 'none';
             }
         });
 
         document.getElementById('btn-logout').addEventListener('click', (e) => {
             e.preventDefault();
-            if(confirm("確定要登出嗎？")) { localStorage.removeItem('starbucks_cart'); signOut(auth).then(() => { window.location.reload(); }); }
+            if(confirm("確定要登出嗎？")) { localStorage.removeItem('nike_cart'); signOut(auth).then(() => { window.location.reload(); }); }
         });
     </script>
 
     <script>
-        const navbarToggle = document.getElementById('navbarToggle');
-        const navbarMenu = document.getElementById('navbarMenu');
-        navbarToggle.addEventListener('click', () => { navbarMenu.classList.toggle('active'); });
-
         function addToCart(itemId) {
-            let cart = JSON.parse(localStorage.getItem('starbucks_cart')) || [];
-            let defSugar = itemId.startsWith('tea') ? '正常糖' : '--';
-            let defIce = itemId.startsWith('tea') ? '正常冰' : '--';
-            let alertMsg = itemId.startsWith('tea') ? '(預設正常糖、正常冰)' : '';
+            let cart = JSON.parse(localStorage.getItem('nike_cart')) || [];
+            let defSize = 'US 9';
+            let defColor = '黑/銀';
 
-            const existingIndex = cart.findIndex(item => item.id === itemId && item.sugar === defSugar && item.ice === defIce);
+            const existingIndex = cart.findIndex(item => item.id === itemId && item.size === defSize && item.color === defColor);
             if (existingIndex > -1) { cart[existingIndex].qty += 1; } 
-            else { cart.push({ id: itemId, qty: 1, sugar: defSugar, ice: defIce }); }
+            else { cart.push({ id: itemId, qty: 1, size: defSize, color: defColor }); }
             
-            localStorage.setItem('starbucks_cart', JSON.stringify(cart));
-            alert(`商品已加入購物車！${alertMsg}`);
+            localStorage.setItem('nike_cart', JSON.stringify(cart));
+            alert(`商品已加入購物車！\n(預設 尺寸:9 / 顏色:黑)`);
             window.location.href = "cart.html";
         }
-
-        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -20px 0px' };
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
-        }, observerOptions);
-
-        document.querySelectorAll('.rank-card').forEach((card, index) => { 
-            setTimeout(() => { observer.observe(card); }, index * 150); 
-        });
     </script>
 </body>
 </html>
