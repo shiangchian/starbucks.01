@@ -7,7 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nike Tech - 未来感球鞋體驗</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;500;700&display=swap"
+        rel="stylesheet">
 
     <style>
         :root {
@@ -386,7 +388,7 @@
                 display: block;
                 width: 100%;
                 text-align: center;
-                border-bottom: 1px solid rgba(255,255,255,0.05);
+                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             }
 
             .navbar-menu.active {
@@ -394,7 +396,8 @@
             }
 
             .navbar-search-container {
-                display: none; /* Hide main search on small mobile to save space */
+                display: none;
+                /* Hide main search on small mobile to save space */
             }
 
             .navbar-toggle {
@@ -439,7 +442,9 @@
             <div class="navbar-search-container">
                 <input type="search" id="searchInput" class="navbar-search" placeholder="搜尋球鞋、限量系列、運動裝備...">
             </div>
-            <div id="header-user-info" style="display:none; color:var(--accent-color); font-weight:bold; font-size: 0.95rem; margin-right: 15px; font-family: 'Orbitron', sans-serif; text-transform: uppercase;"></div>
+            <div id="header-user-info"
+                style="display:none; color:var(--accent-color); font-weight:bold; font-size: 0.95rem; margin-right: 15px; font-family: 'Orbitron', sans-serif; text-transform: uppercase;">
+            </div>
             <button class="navbar-toggle" id="navbarToggle">☰</button>
             <ul class="navbar-menu" id="navbarMenu">
                 <li><a href="#casual"><i class="fa-solid fa-shoe-prints"></i> 休閒鞋</a></li>
@@ -633,7 +638,7 @@
             toast.style.cssText = "position:fixed; top:90px; left:50%; transform:translateX(-50%); background:rgba(52, 199, 89, 0.9); color:white; padding:15px 30px; border-radius:4px; z-index:9999; font-weight:bold; letter-spacing:2px; font-family:'Orbitron', sans-serif; box-shadow: 0 4px 15px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.2); transition: opacity 0.5s ease;";
             toast.innerHTML = `<i class="fa-solid fa-circle-check"></i> ACCESS GRANTED. WELCOME BACK, ${name}`;
             document.body.appendChild(toast);
-            
+
             setTimeout(() => {
                 toast.style.opacity = "0";
                 setTimeout(() => toast.remove(), 500);
@@ -652,7 +657,7 @@
                 navLogin.style.display = 'none';
                 navLogout.style.display = 'block';
                 headerUserInfo.style.display = 'block';
-                headerUserInfo.innerHTML = `<i class="fa-solid fa-user-check"></i> ${userName}`;
+                headerUserInfo.innerHTML = `<i class="fa-solid fa-user-check"></i> ${userName}會員`;
             } else {
                 navLogin.style.display = 'block';
                 navLogout.style.display = 'none';
