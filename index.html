@@ -435,11 +435,11 @@
         <div class="navbar-container">
             <a href="index.html" class="navbar-logo">
                 <img src="./image/loge01.png" alt="Nike Tech" class="logo">
-                <span>NIKE TECH</span>
             </a>
             <div class="navbar-search-container">
                 <input type="search" id="searchInput" class="navbar-search" placeholder="搜尋球鞋、限量系列、運動裝備...">
             </div>
+            <div id="header-user-info" style="display:none; color:var(--accent-color); font-weight:bold; font-size: 0.95rem; margin-right: 15px; font-family: 'Orbitron', sans-serif; text-transform: uppercase;"></div>
             <button class="navbar-toggle" id="navbarToggle">☰</button>
             <ul class="navbar-menu" id="navbarMenu">
                 <li><a href="#casual"><i class="fa-solid fa-shoe-prints"></i> 休閒鞋</a></li>
@@ -448,8 +448,6 @@
                 <li><a href="leaderboard.html"><i class="fa-solid fa-ranking-star"></i> 排行榜</a></li>
                 <li><a href="cart.html"><i class="fa-solid fa-cart-shopping"></i> 購物車</a></li>
                 <li id="nav-login"><a href="login.html"><i class="fa-solid fa-user-gear"></i> 登入/註冊</a></li>
-                <li id="nav-user" style="display:none;"><a href="#" id="user-display"
-                        style="color:var(--accent-color); font-weight:bold;"></a></li>
                 <li id="nav-logout" style="display:none;"><a href="#" id="btn-logout" style="color:#ff3b30;">登出</a></li>
             </ul>
         </div>
@@ -628,21 +626,37 @@
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
 
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('login_success') === 'true') {
+            const name = urlParams.get('name') || '';
+            const toast = document.createElement('div');
+            toast.style.cssText = "position:fixed; top:90px; left:50%; transform:translateX(-50%); background:rgba(52, 199, 89, 0.9); color:white; padding:15px 30px; border-radius:4px; z-index:9999; font-weight:bold; letter-spacing:2px; font-family:'Orbitron', sans-serif; box-shadow: 0 4px 15px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.2); transition: opacity 0.5s ease;";
+            toast.innerHTML = `<i class="fa-solid fa-circle-check"></i> ACCESS GRANTED. WELCOME BACK, ${name}`;
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.style.opacity = "0";
+                setTimeout(() => toast.remove(), 500);
+            }, 3000);
+
+            window.history.replaceState({}, document.title, window.location.pathname);
+        }
+
         onAuthStateChanged(auth, (user) => {
             const navLogin = document.getElementById('nav-login');
-            const navUser = document.getElementById('nav-user');
             const navLogout = document.getElementById('nav-logout');
-            const userDisplay = document.getElementById('user-display');
+            const headerUserInfo = document.getElementById('header-user-info');
 
             if (user) {
+                const userName = user.displayName || user.email.split('@')[0];
                 navLogin.style.display = 'none';
-                navUser.style.display = 'block';
                 navLogout.style.display = 'block';
-                userDisplay.innerHTML = `<i class="fa-solid fa-user-check"></i> 會員 ${user.displayName || user.email.split('@')[0]}`;
+                headerUserInfo.style.display = 'block';
+                headerUserInfo.innerHTML = `<i class="fa-solid fa-user-check"></i> ${userName}`;
             } else {
                 navLogin.style.display = 'block';
-                navUser.style.display = 'none';
                 navLogout.style.display = 'none';
+                headerUserInfo.style.display = 'none';
             }
         });
 
